@@ -1,0 +1,3 @@
+---
+# defaults file for roles/chkprcs
+progress: "____________________:0%.   Nothing completed."

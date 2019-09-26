@@ -1,0 +1,46 @@
+---
+
+- name: check web contents get
+  local_action: uri
+    url={{ workshop_url }}
+    validate_certs=no
+    timeout=5
+    return_content=yes
+  register: webpages
+
+
+- name: select string
+  set_fact:
+      ip_list: "{{ webpages.content | regex_findall('ssh ([A-Za-z0-9-]*)@([A-Za-z0-9-]*.[A-Za-z0-9-]*.rhdemo.io)') }}"
+
+- debug: msg="list => {{ ip_list }}"
+
+- name: select string
+  set_fact:
+    inventory_list: "{{ inventory_list | default('') }}{{ item[1] }} ansible_user={{ item[0] }} ansible_host={{ item[1] }} __LF__"
+  loop: "{{ ip_list }}"
+
+- debug: msg="list => {{ inventory_list }}"
+
+- name: create inventory
+  template:
+    src: hosts.j2
+    dest: ./hosts
+
+- name: replace LF
+  replace:
+    dest: ./hosts
+    regexp: '(__LF__)'
+    replace: '\1\n'
+
+- name: replace LF
+  replace:
+    dest: ./hosts
+    regexp: '(__LF__)'
+    replace: ''
+
+#<code>ssh student2@student2.4f87.rhdemo.io</code>
+#- name: check contents
+#  assert:
+#    that:
+#      - webpages.content is search("{{ content_msg }}")

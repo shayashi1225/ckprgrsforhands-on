@@ -1,0 +1,12 @@
+---
+# vars file for roles/chkprcs
+exe12_msg: "Managed by Ansible"
+
+progress_00: "____________________:0%.   Nothing completed."
+progress_12: "##__________________:10%.  execise1.2 completed."
+progress_13: "####________________:20%.  execise1.3 completed."
+progress_14: "######______________:30%.  execise1.4 completed."
+progress_15: "########____________:40%.  execise1.5 completed."
+progress_16: "##########__________:50%.  execise1.6 completed."
+progress_17: "##############______:70%.  execise1.7 completed."
+progress_18: "####################:100%. execise1 all completed."

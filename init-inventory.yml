@@ -1,0 +1,16 @@
+---
+- name: use chkprcs role playbook
+  hosts: localhost
+  connection: local
+  become: yes
+
+  pre_tasks:
+    - debug:
+        msg: 'Beginning ...'
+
+  roles:
+    - init-inventory
+
+  post_tasks:
+    - debug:
+        msg: 'Finished.'

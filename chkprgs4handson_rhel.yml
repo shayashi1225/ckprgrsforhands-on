@@ -1,0 +1,9 @@
+---
+- name: use chkprcs role playbook
+  hosts: control
+#  become: yes
+  gather_facts: no
+
+  roles:
+    - chkprgs
+

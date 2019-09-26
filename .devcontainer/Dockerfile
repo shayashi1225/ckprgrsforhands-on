@@ -3,6 +3,8 @@ FROM python:3
 # update all
 RUN apt-get update && apt-get install -y --no-install-recommends
 
+RUN apt-get install sshpass
+
 # Copy default endpoint specific user settings overrides into container to specify Python path
 COPY .devcontainer/settings.vscode.json /root/.vscode-remote/data/Machine/settings.json
 
